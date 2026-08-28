@@ -1,0 +1,5 @@
+split,un-classified,polygons,%
+train,8287,225506,3.67
+val,1256,30794,4.08
+test_id,1915,91755,2.09
+test_ood,2553,77313,3.3

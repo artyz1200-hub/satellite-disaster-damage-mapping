@@ -1,0 +1,187 @@
+{
+  "scenes_total": 11034,
+  "polygons_total": 425368,
+  "train_imbalance_ratio": 11.6,
+  "unclassified_pct": 3.29,
+  "tiny_pct_of_labelled": 3.51,
+  "kept_pct": 93.3,
+  "dup_pairs": 28,
+  "dup_cross": 19,
+  "patches_total": 135262,
+  "train_patch_share": {
+    "no-damage": 75.82,
+    "minor-damage": 10.51,
+    "major-damage": 8.59,
+    "destroyed": 5.08
+  },
+  "ood_patch_share": {
+    "no-damage": 82.42,
+    "minor-damage": 0.79,
+    "major-damage": 0.94,
+    "destroyed": 15.84
+  },
+  "P_accuracy_reldrop": 4.2,
+  "P_macro_F1_reldrop": 33.9,
+  "P_macro_ROC_AUC_reldrop": 10.4,
+  "S_accuracy_reldrop": 17.9,
+  "S_macro_F1_reldrop": 38.7,
+  "S_macro_ROC_AUC_reldrop": 12.5,
+  "P_ood_false_alarm": 19.5,
+  "P_ood_inter_pred": 2814,
+  "P_ood_inter_ratio": 11.1,
+  "P_ood_pred_counts": {
+    "no-damage": 10047,
+    "minor-damage": 1647,
+    "major-damage": 1167,
+    "destroyed": 1780
+  },
+  "S_ood_over": 81.1,
+  "S_ood_under": 18.9,
+  "S_ood_false_alarm": 35.9,
+  "S_ood_pred_counts": {
+    "no-damage": 8012,
+    "minor-damage": 2393,
+    "major-damage": 2320,
+    "destroyed": 1902
+  },
+  "S_ood_inter_ratio": 18.6,
+  "P_head_best": 0.499,
+  "P_ft_first": 0.58,
+  "P_best_epoch": 35,
+  "P_epochs": 43,
+  "P_lossmin_epoch": 11,
+  "P_lossmin": 0.588,
+  "P_loss_at_best": 1.027,
+  "P_f1_at_lossmin": 0.633,
+  "S_epochs": 16,
+  "S_best_epoch": 8,
+  "S_minutes": 14.2,
+  "S_lossmin_epoch": 16,
+  "socio_buildings": 185045,
+  "socio_units_raw": 308,
+  "socio_bad_units": 17,
+  "socio_units_clean": 291,
+  "socio_r2_naive": 0.045,
+  "socio_r2_ctrl": 0.0715,
+  "socio_naive": [
+    {
+      "feature": "intercept",
+      "coef": 0.4608,
+      "se": 0.0356,
+      "t": 12.9445,
+      "p": 0.0
+    },
+    {
+      "feature": "income_2017",
+      "coef": 0.2107,
+      "se": 0.0677,
+      "t": 3.1113,
+      "p": 0.0021
+    },
+    {
+      "feature": "median_home_value_2017",
+      "coef": -0.15,
+      "se": 0.0572,
+      "t": -2.6234,
+      "p": 0.0092
+    },
+    {
+      "feature": "renter_pct_2017",
+      "coef": 0.0151,
+      "se": 0.0462,
+      "t": 0.3268,
+      "p": 0.7441
+    }
+  ],
+  "socio_ctrl": [
+    {
+      "feature": "intercept",
+      "coef": 0.4608,
+      "se": 0.0352,
+      "t": 13.0823,
+      "p": 0.0
+    },
+    {
+      "feature": "income_2017",
+      "coef": 0.2253,
+      "se": 0.0674,
+      "t": 3.3422,
+      "p": 0.0009
+    },
+    {
+      "feature": "median_home_value_2017",
+      "coef": -0.1394,
+      "se": 0.0573,
+      "t": -2.435,
+      "p": 0.0155
+    },
+    {
+      "feature": "renter_pct_2017",
+      "coef": 0.0321,
+      "se": 0.0462,
+      "t": 0.6941,
+      "p": 0.4882
+    },
+    {
+      "feature": "building_density",
+      "coef": -0.0853,
+      "se": 0.0389,
+      "t": -2.1906,
+      "p": 0.0293
+    },
+    {
+      "feature": "building_age",
+      "coef": -0.1021,
+      "se": 0.0398,
+      "t": -2.5647,
+      "p": 0.0108
+    }
+  ],
+  "socio_quintiles": [
+    {
+      "income_q": "Q1 lowest",
+      "block_groups": 59,
+      "buildings": 26694,
+      "median_income": 31850.0,
+      "damage_score": 0.5764,
+      "share_destroyed": 0.0635,
+      "share_none": 0.6662
+    },
+    {
+      "income_q": "Q2",
+      "block_groups": 58,
+      "buildings": 20788,
+      "median_income": 47306.5,
+      "damage_score": 0.3358,
+      "share_destroyed": 0.0375,
+      "share_none": 0.8065
+    },
+    {
+      "income_q": "Q3",
+      "block_groups": 58,
+      "buildings": 16343,
+      "median_income": 61356.5,
+      "damage_score": 0.3296,
+      "share_destroyed": 0.0436,
+      "share_none": 0.8205
+    },
+    {
+      "income_q": "Q4",
+      "block_groups": 58,
+      "buildings": 21135,
+      "median_income": 81407.0,
+      "damage_score": 0.4475,
+      "share_destroyed": 0.0308,
+      "share_none": 0.752
+    },
+    {
+      "income_q": "Q5 highest",
+      "block_groups": 58,
+      "buildings": 23531,
+      "median_income": 133204.0,
+      "damage_score": 0.6128,
+      "share_destroyed": 0.0618,
+      "share_none": 0.6778
+    }
+  ]
+}

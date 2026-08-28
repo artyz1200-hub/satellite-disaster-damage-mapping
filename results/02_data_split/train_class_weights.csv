@@ -1,0 +1,5 @@
+class,train_patches,weight
+no-damage,55284,0.33
+minor-damage,7661,2.379
+major-damage,6265,2.91
+destroyed,3706,4.919

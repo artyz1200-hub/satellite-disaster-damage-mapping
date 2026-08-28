@@ -1,0 +1,9 @@
+rule,scope,removed,kept,threshold,rationale
+4.1 missing/unpaired files,scenes,0,11034,all three files must exist,change detection needs pre+post+label; an incomplete scene cannot be used
+4.2a corrupted images,QC sample of 800 images,0,800,PIL full decode must succeed,a truncated PNG raises mid-training and kills the run
+4.2b unreadable labels,all scanned scenes,0,11034,json.loads must succeed,an unparseable JSON yields no labels for the whole scene
+4.3 smoke/cloud occlusion,scenes,0,683,FLAGGED ONLY at occ_score >= p98 (1.209) -> occlusion_candidates.csv,"no occlusion ground truth exists; removal would bias test_ood, the split under study"
+4.4a un-classified subtype,building polygons,14011,411357,subtype == 'un-classified',not a damage level - the annotator could not assess the building; keeping it would add a 5th class that has no operational meaning and pollutes all four real ones
+4.4b degenerate polygons,building polygons,0,425368,bbox width or height <= 0,zero-area bbox cannot be cropped
+4.5 tiny footprints,labelled building polygons,14458,396899,bbox side < 8px,"after 10px padding and upscaling to 64px these are interpolation artefacts, not observations of a building; also a likely source of label noise"
+4.6 near-duplicates,QC sample of 400 scenes,0,400,dhash Hamming distance <= 6/64,"flagged for inspection; xBD tiles are non-overlapping by construction and the split is scene-level, so cross-split leakage is not expected"

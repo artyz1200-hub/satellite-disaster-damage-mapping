@@ -1,0 +1,5 @@
+split,scenes,empty_scenes,median_buildings,total_buildings,empty_%
+train,3135,306,29.0,225506,9.8
+val,392,43,31.5,30794,11.0
+test_id,1135,61,26.0,91755,5.4
+test_ood,6372,3448,0.0,77313,54.1

@@ -1,0 +1,26 @@
+# Core: EDA, split, and both training notebooks
+numpy
+pandas
+matplotlib
+pillow
+scikit-learn
+scipy
+pyarrow                 # the .parquet label-scan caches
+notebook
+jupyterlab
+
+# Part 3 - impact and recovery analysis (socio_analysis.ipynb)
+geopandas               # spatial join of building centroids to census block groups
+shapely
+censusdata              # American Community Survey pull (scripts/download_acs.py)
+
+# Dataset download (scripts/download_xbd.py, download_tiger.py)
+kaggle
+kagglesdk
+requests
+tqdm
+
+# PyTorch is intentionally NOT pinned here: the build depends on your CUDA version.
+# Install it separately, e.g. for CUDA 12.8:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+# A CPU-only build works too; 01_eda.ipynb and 02_data_split.ipynb do not need torch at all.

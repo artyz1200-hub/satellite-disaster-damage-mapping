@@ -1,0 +1,5 @@
+split,no-damage,minor-damage,major-damage,destroyed,total
+train,156261,21335,18637,12801,209034
+val,22059,3257,1800,1447,28563
+test_id,63669,10832,8235,4415,87151
+test_ood,59899,646,704,10902,72151
