@@ -27,16 +27,5 @@ if ($LASTEXITCODE -ne 0) {
     throw "prepare_splits.py validation failed with exit code $LASTEXITCODE"
 }
 
-Write-Output 'Executing local CUDA smoke notebook'
-& .\.venv\Scripts\jupyter.exe nbconvert `
-    --to notebook `
-    --execute .\notebooks\pretrained_resnet18_smoke_test.ipynb `
-    --output pretrained_resnet18_smoke_test.executed.ipynb `
-    --output-dir .\notebooks `
-    --ExecutePreprocessor.kernel_name=xbd-local `
-    --ExecutePreprocessor.timeout=-1
-if ($LASTEXITCODE -ne 0) {
-    throw "Smoke notebook failed with exit code $LASTEXITCODE"
-}
-
-Write-Output 'LOCAL SETUP COMPLETE: split validation and smoke notebook both succeeded.'
+Write-Output 'LOCAL SETUP COMPLETE: archive extraction and split validation succeeded.'
+Write-Output 'Next: run notebooks/data_cleaning_eda.ipynb to create the shared patch arrays.'
