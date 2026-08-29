@@ -48,14 +48,14 @@ comparison and reproducibility notes.
 The two best checkpoints are too large for normal Git history and are published
 as a GitHub Release instead:
 
-- [`pretrained_siamese_resnet18.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping-archive/releases/download/v1.0-trained-models/pretrained_siamese_resnet18.pt)
+- [`pretrained_siamese_resnet18.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping/releases/download/v1.0-trained-models/pretrained_siamese_resnet18.pt)
   (44.23 MB): ImageNet-pretrained Siamese ResNet-18, best epoch 35.
-- [`from_scratch_siamese_cnn.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping-archive/releases/download/v1.0-trained-models/from_scratch_siamese_cnn.pt)
+- [`from_scratch_siamese_cnn.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping/releases/download/v1.0-trained-models/from_scratch_siamese_cnn.pt)
   (5.25 MB): compact Siamese CNN trained from scratch, best epoch 8.
 
-The assets currently remain in the archived repository's
-`v1.0-trained-models` Release. They are versioned model artifacts, not Git
-history, and both links are used only for checkpoint download.
+The assets are published in this repository's `v1.0-trained-models` Release.
+They are versioned model artifacts, not Git history, and both links are used
+only for checkpoint download.
 
 ## Repository layout
 
