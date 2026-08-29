@@ -48,15 +48,14 @@ comparison and reproducibility notes.
 The two best checkpoints are too large for normal Git history and are published
 as a GitHub Release instead:
 
-- `pretrained_siamese_resnet18.pt` (44.23 MB): ImageNet-pretrained Siamese
-  ResNet-18, best epoch 35.
-- `from_scratch_siamese_cnn.pt` (5.25 MB): compact Siamese CNN trained from
-  scratch, best epoch 8.
+- [`pretrained_siamese_resnet18.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping/releases/download/v1.0-trained-models/pretrained_siamese_resnet18.pt)
+  (44.23 MB): ImageNet-pretrained Siamese ResNet-18, best epoch 35.
+- [`from_scratch_siamese_cnn.pt`](https://github.com/artyz1200-hub/satellite-disaster-damage-mapping/releases/download/v1.0-trained-models/from_scratch_siamese_cnn.pt)
+  (5.25 MB): compact Siamese CNN trained from scratch, best epoch 8.
 
-> **Set this up after creating the repository:** upload both `.pt` files under
-> Releases → Draft a new release, then replace this paragraph with the download
-> links. Until then the files remain available from the original project
-> repository's `v1.0-trained-models` release.
+The assets are published in this repository's `v1.0-trained-models` Release.
+They are versioned model artifacts, not Git history, and both links are used
+only for checkpoint download.
 
 ## Repository layout
 
@@ -95,9 +94,9 @@ as a GitHub Release instead:
 | `notebooks/01_eda.ipynb` | Full-dataset exploratory analysis and the cleaning ledger, run locally without a GPU. Writes `results/01_eda/`. |
 | `notebooks/02_data_split.ipynb` | Split audit, leakage checks, and the event-stratified scene sampling that defines the patch set. Writes `results/02_data_split/`. |
 | `notebooks/README.md` | Data layout, partial-dataset behaviour, and the verification table showing these two notebooks reproduce the reference run exactly. |
-| `notebooks/data_cleaning_eda.ipynb` | The earlier combined cleaning + EDA notebook. Writes `results/eda/`. |
-| `notebooks/pretrained_resnet18_train.ipynb` | Formal local experiment for the ImageNet-pretrained Siamese ResNet-18: patch extraction, training, and evaluation. |
-| `notebooks/train_scratch_cnn.ipynb` | Trains, validates, checkpoints, and evaluates the compact Siamese CNN on the pretrained notebook's patch arrays. |
+| `notebooks/data_cleaning_eda.ipynb` | Cleans the indexed buildings, performs the modelling EDA, and creates the shared patch arrays under `work-pretrained/patches/`. Writes `results/eda/`. |
+| `notebooks/pretrained_resnet18_train.ipynb` | Trains the ImageNet-pretrained Siamese ResNet-18 or loads the published checkpoint for evaluation. |
+| `notebooks/train_scratch_cnn.ipynb` | Trains, validates, checkpoints, and evaluates the compact Siamese CNN on the same shared patch arrays. |
 | `notebooks/socio_analysis.ipynb` | Part 3: joins damage labels to census block groups and runs the impact regressions. |
 
 ### Scripts
@@ -178,9 +177,9 @@ py -3.13 -m venv .venv
 ```
 
 Start Jupyter from the repository root so relative paths resolve. Run
-`notebooks/01_eda.ipynb` then `02_data_split.ipynb` first — neither needs a GPU —
-then the two training notebooks. The pretrained notebook creates the shared
-patch arrays that `train_scratch_cnn.ipynb` reads, so run it first of the two.
+`notebooks/01_eda.ipynb` and `02_data_split.ipynb` for the report EDA and split
+audit, then run `data_cleaning_eda.ipynb` to create the shared patch arrays.
+After that the two model notebooks can be run independently.
 
 Non-interactively:
 
@@ -192,9 +191,9 @@ Non-interactively:
   --ExecutePreprocessor.timeout=-1
 ```
 
-Set `RESUME = True` in the configuration cell after an interrupted full run, or
-`SMOKE_TEST = True` to exercise checkpointing and evaluation on a few batches
-without overwriting full-run artifacts.
+The pretrained notebook defaults to checkpoint evaluation; set
+`RUN_TRAINING = True` for the full 5+45 epoch schedule. The scratch notebook
+supports `RESUME = True` after an interrupted training run.
 
 Seed 42 throughout. The reported runs used an NVIDIA RTX 4070 Laptop GPU.
 

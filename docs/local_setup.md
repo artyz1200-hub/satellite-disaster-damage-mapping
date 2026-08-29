@@ -22,8 +22,9 @@ From PowerShell in the repository root:
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip wheel setuptools
-.\.venv\Scripts\python.exe -m pip install -r requirements-local.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+.\.venv\Scripts\python.exe -m ipykernel install --user --name xbd-local --display-name "Python (xbd-local)"
 ```
 
 Verify the GPU:
@@ -74,14 +75,20 @@ Start Jupyter from the repository root so relative paths resolve correctly:
 .\.venv\Scripts\jupyter-lab.exe
 ```
 
-Use `notebooks\pretrained_resnet18_smoke_test.ipynb` first. It is configured for the tested
-Windows laptop with 16 GB RAM and 8 GB VRAM: 170 scenes, batch size 32, four
-extraction threads, and one epoch in each training phase. Its artifacts go to
-`work-smoke\`.
+Run `notebooks\data_cleaning_eda.ipynb` first. Its patch-extraction section
+creates `work-pretrained\patches\manifest.csv`, `pre.npy`, and `post.npy`.
+Both model notebooks read these exact arrays.
 
-After the smoke notebook succeeds, use
-`notebooks\pretrained_resnet18_train.ipynb` for the formal pretrained run. It
-creates about 3.5 GB under `work-pretrained\` and takes substantially longer.
+Next open `notebooks\pretrained_resnet18_train.ipynb`. Its default
+`RUN_TRAINING = False` mode downloads or loads the published checkpoint and
+recomputes validation, test-ID, and wildfire test-OOD metrics. Set
+`RUN_TRAINING = True` for the full training schedule: five frozen-backbone
+epochs followed by up to 45 fine-tuning epochs, with early stopping on
+validation macro-F1.
+
+The pretrained run writes generated checkpoints, metrics, and figures under
+`work-pretrained\`. The tracked reference results under
+`results\pretrained_resnet18\` are not overwritten.
 
 Train the from-scratch CNN on the same extracted patches with:
 
@@ -94,5 +101,6 @@ Train the from-scratch CNN on the same extracted patches with:
   --ExecutePreprocessor.timeout=-1
 ```
 
-Use the notebook configuration cell to set `RESUME = True` after an interrupted
-full run, or `SMOKE_TEST = True` for an isolated short procedure check.
+Use the scratch notebook configuration cell to set `RESUME = True` after an
+interrupted scratch-CNN run. The pretrained notebook always restores its best
+validation checkpoint after training.

@@ -8,6 +8,7 @@ scipy
 pyarrow                 # the .parquet label-scan caches
 notebook
 jupyterlab
+ipykernel
 
 # Part 3 - impact and recovery analysis (socio_analysis.ipynb)
 geopandas               # spatial join of building centroids to census block groups
